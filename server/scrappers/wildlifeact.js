@@ -13,10 +13,11 @@ async function main(){
             const postImg = await article.$eval('.wla-h-card__image img', img => img.getAttribute('src'));
             const postLink = await article.$eval('.link--silent', a => a.getAttribute('href'));
             const postTitle =  await article.$eval('.link--silent', a => a.innerHTML);
-            const postContent  = await article.$('.wla-h-card__content').parentNode;
-            const tets = await postContent.innerHTML;
+            const postContent  = await article.$eval('.wla-h-card__content', div => {
+                div.innerHTML.split()
+            } )        
             // console.log(postContent);
-            console.log(tets);
+            console.log(postContent);
         }
     }catch(e){
         console.log(e)
