@@ -28,9 +28,12 @@
   },
   "dependencies": {
     "babel-polyfill": "^6.26.0",
+    "bcrypt": "^4.0.1",
     "express": "^4.17.1",
+    "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.9.7",
-    "puppetee  r": "^2.1.1",
+    "puppeter": "^2.1.1",
+    "v-response": "^1.1.0",
     "validator": "^13.0.0"
   }
 }
