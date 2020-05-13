@@ -17,7 +17,7 @@ let newsSchema = new mongoose.Schema({
     },
 
     imageUrl: {
-        tyep: String,
+        type: String,
         required: true
     },
 

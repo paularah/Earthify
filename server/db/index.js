@@ -5,9 +5,9 @@
  */
 
 var mongoose = require('mongoose');
-require('dotenv');
+console.log(process.env.MONGO_URI)
 
-mongoose.connect('process.env.CLUSTER_SRV', {useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true} );
+mongoose.connect('mongodb://localhost:27017/Earthify', {useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true} );
 
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
