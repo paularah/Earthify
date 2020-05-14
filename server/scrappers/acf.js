@@ -3,7 +3,7 @@ const puppeteer = require('puppeteer');
 
 async function articles(){
     try{
-        let allNews = []
+        let allNews = [];
         const browser = await puppeteer.launch({headless:false, defaultViewport:null});
         const page = await browser.newPage();
         // Override default user agent 
@@ -30,7 +30,6 @@ async function articles(){
         const validNews = await allNews.filter(news => news.postImg.endsWith('.jpg'))
         console.log(validNews)
         return validNews
-        //console.log(article)
     }catch(e){
         console.log(e)
     }

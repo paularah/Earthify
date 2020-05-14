@@ -1,27 +1,22 @@
 const mongoose = require('mongoose');
 
 let newsSchema = new mongoose.Schema({
-    headline:{
+    postTitle:{
         type: String,
         required: true
     },
 
-    body:{
+    postContent:{
         type: String,
         required: true
     },
     
-    source:{
+    postLink:{
         type: String,
         required: true
     },
 
-    imageUrl: {
-        type: String,
-        required: true
-    },
-
-    timeStamp:{
+    postImg: {
         type: String,
         required: true
     }

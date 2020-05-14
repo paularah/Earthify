@@ -1,6 +1,3 @@
-import { response } from "express";
-import { ConnectionBase } from "mongoose";
-
 (function(){
     //Login/Signup modal window - by CodyHouse.co
 	function ModalSignin( element ) {
@@ -52,14 +49,6 @@ import { ConnectionBase } from "mongoose";
 			event.preventDefault();
 			self.toggleError(document.getElementById('signin-email'), true);
 		});
-
-		fetch('localhost:3000//register').then(response => {
-			if (response){
-				
-			}
-		}).catch( err => {
-			Console.log(err);
-		})
 		this.blocks[1].getElementsByTagName('form')[0].addEventListener('submit', function(event){
 			event.preventDefault();
 			self.toggleError(document.getElementById('signup-username'), true);
