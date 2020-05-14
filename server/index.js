@@ -4,6 +4,7 @@ const app = express();
 const mongoose = require('./db/index');
 const cors = require('cors');
 const path = require('path');
+const port = process.env.PORT || 3000;
 
 const loginRoutes = require('./routes/login/loginRoute')
 const signupRoutes = require('./routes/signup/signupRoutes');
@@ -19,6 +20,6 @@ app.use(express.static(staticDir));
 app.use(loginRoutes);
 app.use(signupRoutes);
 
-app.listen(3000, () => {
-    console.log(`Up and running on port`);
+app.listen(port, () => {
+    console.log(`Up and running on port ${port}`);
 });

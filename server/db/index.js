@@ -7,7 +7,7 @@
 var mongoose = require('mongoose');
 console.log(process.env.MONGO_URI)
 
-mongoose.connect('mongodb://localhost:27017/Earthify', {useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true} );
+mongoose.connect('mongodb+srv://arah:samflexino@earthify-rdpdj.mongodb.net/test?retryWrites=true&w=majority', {useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true} );
 
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
