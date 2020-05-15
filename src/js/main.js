@@ -1,5 +1,23 @@
 (function(){
-    //Login/Signup modal window - by CodyHouse.co
+	//Login/Signup modal window - by CodyHouse.co
+	
+	async function authenticate(url, data){
+		const response = await fetch(url, {
+		   method: 'POST',
+		   mode: 'cors',
+		   credentials: 'same-origin',
+		   headers: {
+			   'Content-Type':'application/json'
+		   },
+		   redirect: 'follow',
+		   referrerPolicy: 'no-referrer',
+		   body: JSON.stringify(data)
+	
+		});
+		return response.json;
+	}
+	
+
 	function ModalSignin( element ) {
 		this.element = element;
 		this.blocks = this.element.getElementsByClassName('js-signin-modal-block');
@@ -48,10 +66,29 @@
 		this.blocks[0].getElementsByTagName('form')[0].addEventListener('submit', function(event){
 			event.preventDefault();
 			self.toggleError(document.getElementById('signin-email'), true);
+			const details = {
+				email: document.getElementById('signin-email').value,
+				password: document.getElementById('signin-password').value
+			}
+			authenticate('http://localhost:3000/login', details).
+			then(user => console.log(user))
+			.catch(e => {
+				self.toggleError(document.getElementById('signin-email'), true);
+				console.log(`Error: ${e}`);
+				const me = document.getElementsByClassName('cd-main-nav__item')
+				removeClass(me, cd-main-nav__item)
+			})
 		});
+
 		this.blocks[1].getElementsByTagName('form')[0].addEventListener('submit', function(event){
 			event.preventDefault();
 			self.toggleError(document.getElementById('signup-username'), true);
+			const data = {
+				username: document.getElementById('signup-username').value,
+				email: document.getElementById('signup-email').value,
+				password: document.getElementById('signup-password').value
+			}
+			console.log(data)
 		});
 	};
 
