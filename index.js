@@ -10,7 +10,7 @@ const loginRoutes = require('./routes/login/loginRoute')
 const signupRoutes = require('./routes/signup/signupRoutes');
 const baseRoute = require('./routes/baseRoute');
 
-const staticDir = path.resolve(__dirname, '../', 'src');
+const staticDir = path.resolve(__dirname, 'src');
 // third party middlewares 
 app.use(cors());
 app.use(bodyParser.json());
