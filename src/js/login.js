@@ -29,7 +29,7 @@ async function addToDOM(newslist){
     
 }
 
-fetch('http://localhost:3000/news').then(response => {
+fetch('https://earthify.herokuapp.com/news').then(response => {
     return response.json()
 }).then(data => addToDOM(data))
 .catch(e => {

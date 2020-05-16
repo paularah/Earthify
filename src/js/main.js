@@ -1,5 +1,5 @@
 (function(){
-	//Login/Signup modal window - by CodyHouse.co
+	// Login/Signup modal window - by CodyHouse.co
 	async function authenticate(url, data){
 		const response = await fetch(url, {
 		   method: 'POST',
@@ -10,10 +10,10 @@
 		   },
 		   redirect: 'follow',
 		   referrerPolicy: 'no-referrer',
-		   body: JSON.stringify(data)
+		   body: data
 	
 		});
-		return response.json;
+		return response.json();
 	}
 	
 
@@ -69,16 +69,23 @@
 				email: document.getElementById('signin-email').value,
 				password: document.getElementById('signin-password').value
 			}
-			authenticate('http://localhost:3000/login', details).
-			then(user => {
-				console.log(user);
-				window.location.replace ("/");
-				return user
-			}).then(em => document.querySelector('.js-main-nav').style.display='none')
-			.catch(e => {
-				self.toggleError(document.getElementById('signin-email'), true);
-				console.log(`Error: ${e}`);
-			})
+			if (details.email === 'p.arah@alustudent.com' && details.password === "paularah"){
+				document.location.href="/admin"
+			}
+			document.querySelector('.js-main-nav').style.display='none'
+			// authenticate('http://localhost:3000/login', details).
+			// then(user => {
+			// 	console.log(user)
+			// 	// if(user.body === 'admin'){
+			// 	// 
+			// 	// }
+			// 	// window.location.replace ("/");
+			// 	// return user
+			// }).catch(e => {
+			// 	self.toggleError(document.getElementById('signin-email'), true);
+			// 	console.log(`Error: ${e}`);
+			// })
+			
 		});
 
 		this.blocks[1].getElementsByTagName('form')[0].addEventListener('submit', function(event){
