@@ -9,7 +9,6 @@ signup = (req, res) => {
     user.save().then(() => {
         return user.generateAuthToken()
     }).then(token => {
-        console.log(user)
         res.status(200).header('x-auth', token).send(user);
         console.log(user);
     }).catch((e) => {

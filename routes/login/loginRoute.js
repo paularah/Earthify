@@ -13,6 +13,8 @@ router.post('/login', (req, res) => {
         user.generateAuthToken().then(token => {
             res.header('x-auth', token).status(200).send(user);  
         })
+
+        // add confitional for redirecting to admin 
     }).catch(e => {
         res.status(400).send();
         console.log('unable to find user credentials');

@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const _ = require('lodash');
 
 let newsSchema = new mongoose.Schema({
     postTitle:{
@@ -21,6 +22,12 @@ let newsSchema = new mongoose.Schema({
         required: true
     }
 })
+
+newsSchema.methods.toJSON = function () {
+    const news = this;
+    const newsObject = news.toObject();
+    return _.pick(newsObject, ['postTitle','postContent', 'postImg', 'postLink']);
+}
 
 const News = mongoose.model('news', newsSchema);
 module.exports = {News: News};

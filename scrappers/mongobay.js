@@ -1,9 +1,9 @@
 const puppeteer = require('puppeteer');
-
+const News = require('../db/models/news').News;
 async function main(){
     try{
         let allNews = []
-        const browser = await puppeteer.launch({headless:false, defaultViewport:null, args:[
+        const browser = await puppeteer.launch({headless:true, defaultViewport:null, args:[
             '--disable-gpu',
             '--disable-dev-shm-usage',
             '--disable-setuid-sandbox',
@@ -31,9 +31,18 @@ async function main(){
                 postLink,
                 postContent
             }
+            console.log(news)
             await allNews.push(news)
         }
-        return allNews;
+        await allNews.forEach(collection => {
+            const each = new News(collection);
+            each.save().then( doc => {
+                console.log('saving news from mongobay')
+            }).catch(e => {
+                console.log(`error trying to save news from mongobay ${e}`);
+            })
+
+        })
         
     }catch(e){
         console.log(e)

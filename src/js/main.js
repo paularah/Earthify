@@ -1,6 +1,5 @@
 (function(){
 	//Login/Signup modal window - by CodyHouse.co
-	
 	async function authenticate(url, data){
 		const response = await fetch(url, {
 		   method: 'POST',
@@ -41,7 +40,7 @@
 			})(i);
 		}
 
-		//close modal
+		
 		this.element.addEventListener('click', function(event){
 			if( hasClass(event.target, 'js-signin-modal') || hasClass(event.target, 'js-close') ) {
 				event.preventDefault();
@@ -71,24 +70,49 @@
 				password: document.getElementById('signin-password').value
 			}
 			authenticate('http://localhost:3000/login', details).
-			then(user => console.log(user))
+			then(user => {
+				console.log(user);
+				window.location.replace ("/");
+				return user
+			}).then(em => document.querySelector('.js-main-nav').style.display='none')
 			.catch(e => {
 				self.toggleError(document.getElementById('signin-email'), true);
 				console.log(`Error: ${e}`);
-				const me = document.getElementsByClassName('cd-main-nav__item')
-				removeClass(me, cd-main-nav__item)
 			})
 		});
 
 		this.blocks[1].getElementsByTagName('form')[0].addEventListener('submit', function(event){
 			event.preventDefault();
-			self.toggleError(document.getElementById('signup-username'), true);
+			const username = document.getElementById('signup-username');
+			const email = document.getElementById('signup-email');
+			const password = document.getElementById('signup-password');
 			const data = {
-				username: document.getElementById('signup-username').value,
-				email: document.getElementById('signup-email').value,
-				password: document.getElementById('signup-password').value
+				username: username.value,
+				email: email.value,
+				password: password.value
 			}
-			console.log(data)
+			const fields = Object.keys(data)
+			// console.log(fields);
+			// validating user input to the form 
+			fields.forEach( field => {
+				if (data[field] === ""){
+					console.log(`signin-${field}`)
+					document.getElementsByClassName('cd-signin-modal__error cd-signin-modal__error--is-visible').innerText = `Invalid ${field}`
+					self.toggleError(document.getElementById(`signup-${field}`), true)
+
+				}
+			})
+			authenticate('http://localhost:3000/register', data)
+			.then(res => {
+				document.querySelector('.js-main-nav').style.display='none'
+				window.location.href="/";
+			}).catch(e => {
+				self.toggleError(document.getElementById('signup-email'), true);
+				self.toggleError(document.getElementById('signup-password'), true);
+				console.log(e)
+			})
+
+			
 		});
 	};
 
