@@ -1,6 +1,6 @@
 const puppeteer = require('puppeteer');
 
-async function main(){
+async function getWildNews(){
     try{
         const browser = await puppeteer.launch({headless:false, defaultViewport:null});
         const page = await browser.newPage();
@@ -25,4 +25,4 @@ async function main(){
     }
 } 
 
-main()
+module.exports = getWildNews
